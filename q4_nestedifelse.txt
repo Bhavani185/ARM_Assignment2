@@ -1,0 +1,16 @@
+
+Nested If else instruction is not possible directly using IT instruction instead we can use branch instructions as follows:
+
+C code:					ARM code:
+	if (a>b)				CMP a,b
+	{				BGT ifcase
+	  if(b>c)			                BLE elsecase
+	   d=b;			      ifcase	
+	 else				CMP b,c
+	   d=c;				ITE GT
+	}				MOVGT d,b
+             else				MOVLE d,c
+	{				B contd
+	 d=a;			   elsecase
+	}				MOV d,a
+            contd...	  		   contd
